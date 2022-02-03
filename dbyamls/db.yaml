@@ -2,35 +2,35 @@
 apiVersion: "apps/v1"
 kind: "Deployment"
 metadata:
-  name: "pavithra"
+  name: "pavit-onlineveg"
   namespace: "default"
   labels:
-    app: "pavithra"
+    app: "pavit-onlineveg"
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: "pavithra"
+      app: "pavit-onlineveg"
   template:
     metadata:
       labels:
-        app: "pavithra"
+        app: "pavit-onlineveg"
     spec:
       containers:
       - name: "onlinevegetablesale-sha256-1"
-        image: "gcr.io/gcpdemo-334906/github.com/pavithracherukuri/onlinevegetablesale@sha256:08fe0acde58d0c419e076d25b6913b9e434b82d972149ca837d70b787efa8e1f"
+        image: "gcr.io/gcpdemo-334906/github.com/pavithracherukuri/onlinevegetablesale@sha256:5231761f0a2ed9549d82c1b4fb1186ce3fb33ceb59b2aa2496e2b9ad2f515ed6"
 ---
 apiVersion: "autoscaling/v2beta1"
 kind: "HorizontalPodAutoscaler"
 metadata:
-  name: "pavithra-hpa-hral"
+  name: "pavit-onlineveg-hpa-9bl4"
   namespace: "default"
   labels:
-    app: "pavithra"
+    app: "pavit-onlineveg"
 spec:
   scaleTargetRef:
     kind: "Deployment"
-    name: "pavithra"
+    name: "pavit-onlineveg"
     apiVersion: "apps/v1"
   minReplicas: 1
   maxReplicas: 5
