@@ -1,0 +1,41 @@
+[12:32 PM, 2/3/2022] ~: ---
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "pavithra"
+  namespace: "default"
+  labels:
+    app: "pavithra"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "pavithra"
+  template:
+    metadata:
+      labels:
+        app: "pavithra"
+    spec:
+      containers:
+      - name: "onlinevegetablesale-sha256-1"
+        image: "gcr.io/gcpdemo-334906/github.com/pavithracherukuri/onlinevegetablesale@sha256:348ef25eaa77520e1ca6a66fec7de6a06b3a5f106ed0d70e3e1550c88d89b979"
+---
+apiVersion: "autoscaling/v2beta1"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: "pavithra-hpa-bux1"
+  namespace: "default"
+  labels:
+    app: "pavithra"
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "pavithra"
+    apiVersion: "apps/v1"
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: "Resource"
+    resource:
+      name: "cpu"
+      targetAverageUtilization: 80
