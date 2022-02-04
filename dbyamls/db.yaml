@@ -1,38 +1,46 @@
----
+
+  ---
 apiVersion: "apps/v1"
 kind: "Deployment"
 metadata:
-  name: "pavithra"
+  name: "team-4"
   namespace: "default"
   labels:
-    app: "pavithra"
+    app: "team-4"
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: "pavithra"
+      app: "team-4"
   template:
     metadata:
       labels:
-        app: "pavithra"
+        app: "team-4"
     spec:
       containers:
       - name: "onlinevegetablesale-sha256-1"
-        image: "gcr.io/cap1-339903/github.com/pavithracherukuri/onlinevegetablesale@sha256:e21968b73be5677e21d3ff7e2c31a7b6abf6082f9cf44302f5617032546e72a2"
+        image: "gcr.io/cap1-339903/github.com/pavithracherukuri/onlinevegetablesale@sha256:b3f4110a0fa21278cd0cd341df815c0a2a2b577dc863f63b0381b067ec3635c5"
 ---
 apiVersion: "autoscaling/v2beta1"
 kind: "HorizontalPodAutoscaler"
 metadata:
-  name: "pavithra-hpa-rqer"
+  name: "team-4-hpa-tvjs"
   namespace: "default"
   labels:
-    app: "pavithra"
+    app: "team-4"
 spec:
   scaleTargetRef:
     kind: "Deployment"
-    name: "pavithra"
+    name: "team-4"
     apiVersion: "apps/v1"
   minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: "Resource"
+    resource:
+      name: "cpu"
+      targetAverageUtilization: 80
+
   maxReplicas: 5
   metrics:
   - type: "Resource"
