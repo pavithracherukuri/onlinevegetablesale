@@ -18,12 +18,12 @@ spec:
     spec:
       containers:
       - name: "onlinevegetablesale-sha256-1"
-        image: "gcr.io/cap1-339903/github.com/pavithracherukuri/onlinevegetablesale@sha256:20fdb57b9675fd30743a2ea1bb1c76df366f34c0083cb1ad0ee13f6987ed2ad3"
+        image: "gcr.io/cap1-339903/github.com/pavithracherukuri/onlinevegetablesale@sha256:e21968b73be5677e21d3ff7e2c31a7b6abf6082f9cf44302f5617032546e72a2"
 ---
 apiVersion: "autoscaling/v2beta1"
 kind: "HorizontalPodAutoscaler"
 metadata:
-  name: "pavithra-hpa-exzi"
+  name: "pavithra-hpa-rqer"
   namespace: "default"
   labels:
     app: "pavithra"
@@ -39,3 +39,4 @@ spec:
     resource:
       name: "cpu"
       targetAverageUtilization: 80
+
